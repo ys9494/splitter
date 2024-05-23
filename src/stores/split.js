@@ -8,20 +8,6 @@ const defaultTotalResult = () => ({
   gathering: []
 })
 
-// people
-// [{ id: 'string', name: 'string', amount: 'number' }]
-
-// gathering
-// [
-//   {
-//     id: 'string',
-//     name: 'string',
-//     amount: 'number',
-//     people: [{id, amount}],
-//     addedItem: [{ id: 'string', name: 'string', amount: 'number', people: [] }]
-//   }
-// ]
-
 export const useSplitStore = defineStore('split', () => {
   const totalResult = ref(defaultTotalResult())
 
@@ -108,34 +94,8 @@ export const useSplitStore = defineStore('split', () => {
   }
 
   function setResult() {
-    // totalResult.value.people.forEach((person) => {
-    //   person.amount = 0
-    //   totalResult.value.gathering.forEach((gather) => {
-    //     gather.people.forEach((p) => {
-    //       if (person.id === p.id) person.amount += p.amount
-    //     })
-    //   })
-    // })
-
-    // // gather의 모든 사람들의 수량을 매핑하여 사람 ID를 키로 하는 객체를 생성합니다.
-    // const gatheringMap = {}
-    // totalResult.value.gathering.forEach((gather) => {
-    //   gather.people.forEach((p) => {
-    //     if (!gatheringMap[p.id]) {
-    //       gatheringMap[p.id] = 0
-    //     }
-    //     gatheringMap[p.id] += p.amount
-    //   })
-    // })
-
-    // // 각 사람의 총 수량을 계산합니다.
-    // totalResult.value.people.forEach((person) => {
-    //   person.amount = gatheringMap[person.id] || 0
-    // })
-
     totalResult.value.amount = totalResult.value.gathering.reduce((acc, cur) => acc + cur.amount, 0)
 
-    // gather의 모든 사람들의 수량을 매핑하여 사람 ID를 키로 하는 객체를 생성합니다.
     const gatheringMap = totalResult.value.gathering.reduce((acc, gather) => {
       gather.people.forEach((p) => {
         acc[p.id] = (acc[p.id] || 0) + p.amount
@@ -143,7 +103,6 @@ export const useSplitStore = defineStore('split', () => {
       return acc
     }, {})
 
-    // 각 사람의 총 수량을 계산합니다.
     totalResult.value.people.forEach((person) => {
       person.amount = gatheringMap[person.id] || 0
     })

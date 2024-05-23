@@ -100,6 +100,10 @@ const isPopupOpen = ref(false)
 
 onMounted(() => {
   store.setResult()
+  if (totalResult && totalResult.people.length < 1) {
+    console.log('정산 내역 없음')
+    router.replace({ name: 'home' })
+  }
 })
 
 function openPopup() {
@@ -117,6 +121,7 @@ function closePopup() {
 function resetStore() {
   if (window.confirm('정말 초기화하시겠습니까?')) {
     store.resetResult()
+    router.replace({ name: 'home' })
   }
 }
 </script>

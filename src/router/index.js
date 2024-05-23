@@ -4,6 +4,7 @@ import ResultView from '../views/ResultView.vue'
 import AddGatheringView from '../views/AddGatheringView.vue'
 import AddPeopleView from '../views/AddPeopleView.vue'
 import AddItemView from '../views/AddItemView.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,15 @@ const router = createRouter({
       path: '/add/gathering',
       name: 'add-gathering',
       component: AddGatheringView
+    },
+    {
+      path: '/404',
+      name: 'not-found',
+      component: NotFound
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/404'
     }
   ]
 })

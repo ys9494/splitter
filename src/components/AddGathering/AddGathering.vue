@@ -79,12 +79,14 @@ const totalResult = store.totalResult
 const gathering = reactive({
   name: '',
   amount: '',
-  people: []
+  people: [...totalResult.people]
 })
 
 onMounted(() => {
-  console.log('mounted')
-  if (totalResult && totalResult.people.length < 1) router.replace({ name: 'add-people' })
+  if (totalResult && totalResult.people.length < 1) {
+    alert('인원을 먼저 추가해주세요')
+    router.replace({ name: 'add-people' })
+  }
 })
 
 function handlePriceInput(event) {

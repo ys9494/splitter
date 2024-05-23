@@ -34,7 +34,7 @@
       <button
         class="hover:opacity-40 transition-all duration-100"
         type="button"
-        @click="handleDelete(idx)"
+        @click.prevent="handleDelete(idx)"
       >
         <img class="w-4" src="@/assets/icons/xmark-solid.svg" alt="delete" />
       </button>
@@ -44,16 +44,18 @@
       <button
         class="text-lg text-cyan-600 hover:opacity-60 transition-all duration-300"
         type="button"
-        @click="handleSubmitNameList"
+        @click.prevent="handleSubmitNameList"
       >
         Done
       </button>
-      <router-link
-        class="opacity-60 hover:opacity-100 transition-all duration-300"
-        :to="{ name: 'result' }"
+
+      <button
+        class="text-lg text-cyan-600 hover:opacity-60 transition-all duration-300"
+        type="button"
+        @click.prevent="handleCancel"
       >
-        <span class="text-lg">Cancel</span>
-      </router-link>
+        Cancel
+      </button>
     </div>
   </div>
 </template>
@@ -71,9 +73,7 @@ const store = useSplitStore()
 const peopleList = ref([])
 const nameInput = ref('')
 
-onMounted(() => {
-  store.getResultFromLocalStorage()
-})
+onMounted(() => {})
 
 function findName(list) {
   return list.find((i) => i.name === nameInput.value)
@@ -99,6 +99,14 @@ function handleSubmitNameList() {
     router.push({ name: 'add-gathering' })
   } else {
     router.push({ name: 'result' })
+  }
+}
+
+function handleCancel() {
+  if (store.totalResult?.people.length > 0) {
+    router.push({ name: 'result' })
+  } else {
+    router.push({ name: 'home' })
   }
 }
 </script>

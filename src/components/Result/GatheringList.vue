@@ -73,22 +73,15 @@
 <style scoped></style>
 
 <script setup>
-import { useRouter } from 'vue-router'
 import { useSplitStore } from '../../stores/split'
 
-const router = useRouter()
 const store = useSplitStore()
 
-const props = defineProps({
+defineProps({
   gatheringList: Array
 })
 
 function deleteGathering(id) {
   if (confirm('모임을 삭제하시겠습니까?')) store.deleteGathering(id)
-}
-
-function goToAddItem(gatheringId) {
-  console.log('add', gatheringId)
-  router.push({ name: 'add-item', params: { id: gatheringId } })
 }
 </script>

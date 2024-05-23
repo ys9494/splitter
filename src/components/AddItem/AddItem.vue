@@ -44,13 +44,23 @@
           <span class="ml-3">{{ person.name }}</span>
         </label>
       </div>
-      <button
-        class="text-cyan-600 font-bold hover:opacity-60 transition-all duration-300"
-        type="submit"
-        @click="handleAddedItem"
-      >
-        Done
-      </button>
+
+      <div class="mt-20 pb-12 flex flex-wrap justify-around font-bold text-lg">
+        <button
+          class="text-cyan-600 font-bold hover:opacity-60 transition-all duration-300"
+          type="submit"
+          @click="handleAddedItem"
+        >
+          Add
+        </button>
+
+        <router-link
+          class="opacity-60 hover:opacity-100 transition-all duration-300"
+          :to="{ name: 'result' }"
+        >
+          <span>Cancel</span>
+        </router-link>
+      </div>
     </form>
   </div>
 </template>
@@ -68,7 +78,7 @@ const paramsId = route.params.id
 
 const store = useSplitStore()
 const gatheringList = store.totalResult.gathering
-const poepleList = computed(() => gatheringList.find((i) => i.id == paramsId).people)
+const poepleList = computed(() => gatheringList.find((i) => i.id == paramsId)?.people)
 const maxAmount = computed(() => {
   const gathering = gatheringList.find((i) => i.id == paramsId)
   const totalItemAmount = gathering.addedItem

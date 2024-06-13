@@ -62,7 +62,7 @@ export const useSplitStore = defineStore('split', () => {
     const gatheringIdx = totalResult.value.gathering.findIndex((i) => i.id === gatheringId)
     if (gatheringIdx === -1) return console.log('존재하지 않는 모임입니다..')
 
-    totalResult.value.gathering.splice(gatheringId, 1)
+    totalResult.value.gathering.splice(gatheringIdx, 1)
 
     setResult()
   }

@@ -3,6 +3,7 @@
 -   **프로젝트 명** : **Splitter**
 -   **프로젝트 기간** : 2023.07.24 - 2023.08.06
 -   **시연 영상** : https://drive.google.com/file/d/1FK5JaRiaoBCYsZopb0SKrZ-mP0LC40-3/view?usp=drive_link
+-   **배포 링크** : https://splitter-steel.vercel.app/
 
 <br>
 
